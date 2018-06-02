@@ -4,11 +4,12 @@ import React from "react";
 import { connect } from "react-redux";
 
 import {
-  ADD_COUNTER,
-  REMOVE_COUNTER,
-  INCREMENT,
-  DECREMENT
-} from "../../redux-flow/reducers/counters";
+  addCounter,
+  removeCounter,
+  increment,
+  decrement
+} from "../../redux-flow/reducers/counters/action-creators";
+
 import Counter from "../../containers/counter/counter";
 
 const Counters = ({
@@ -45,10 +46,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addCounter: () => dispatch({ type: ADD_COUNTER }),
-  increment: index => () => dispatch({ type: INCREMENT, index }),
-  decrement: index => () => dispatch({ type: DECREMENT, index }),
-  removeCounter: index => () => dispatch({ type: REMOVE_COUNTER, index })
+  addCounter: () => dispatch(addCounter()),
+  removeCounter: index => () => dispatch(removeCounter(index)),
+  increment: index => () => dispatch(increment(index)),
+  decrement: index => () => dispatch(decrement(index))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counters);
